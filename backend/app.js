@@ -43,7 +43,7 @@ app.post ("/addToStock", addToStock)
 //List all stocks
 app.get ("/allStocks", allStocks)
 
-app.get ("/allSales", allSales)
+app.get ("/allSales", allSales) 
 
 //Make Sales
 app.post ("/deleteSales", deleteSales)

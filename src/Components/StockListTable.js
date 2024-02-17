@@ -76,7 +76,7 @@ function StockListTable({}) {
   useEffect(() => {
     fetchData();
   
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 3000);
   
     return () => clearInterval(intervalId);
   }, []);

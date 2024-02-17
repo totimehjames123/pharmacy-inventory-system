@@ -18,8 +18,8 @@ function dashboard() {
     <div className='flex max-w-full overflow-hidden max-h-screen'>
         <SideBar />
         <div className='w-full h-screen overflow-scroll'>
-          <NavBar toggleThemeMode={toggleThemeMode} isLightMode={isLightMode} title={'DashBoard'} profilePicture={'background.jpeg'} alt='imagess' username={'John Buamah'}/>
-
+          <NavBar toggleThemeMode={toggleThemeMode} isLightMode={isLightMode} title={'DashBoard'} profilePicture={'background.jpeg'}  username={'John Buamah'}/>
+          
           <div className='grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3'>
                 <DataCard background={'bg-gray-500'} title={'Total Users'} time={'Now'} number={'2'} icon={<FaUser size={50} color='gray'/>}/>             
                 <DataCard background={'bg-red-300'} title={'Total Medicines'} time={'Up from yesterday'} number={'3'} icon={<FaKitMedical size={50} color='pink'/>}/>             

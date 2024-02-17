@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const config = require('./../../../config');
 const usr = require('./../../../models/users');
 
-export default async (req, res) => {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { username, password } = req.body;
 

@@ -9,13 +9,18 @@ const stockRoute = async (req, res) => {
         unitPrice: unitPrice,
         quantity: quantity
     })
-
-    if (addToStock){
-        res.send({ message: "Medicine add successfully!", status: 200 })
+    try {
+        if (addToStock){
+            res.send({ message: "Medicine add successfully!", status: 200 })
+        }
+        else {
+            res.send ( { message: "Failed to add medicine", status: 502 } )
+        }
     }
-    else {
-        res.send ( {message: "Failed to add medicine", status: 502} )
+    catch (err) {
+        res.send({ message: err }) 
     }
+    
 }
 
 module.exports = stockRoute

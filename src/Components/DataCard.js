@@ -2,12 +2,6 @@ import React from 'react'
 
 function DataCard({background, title, number, icon, time}) {
 
-    const data = [
-        {
-            name: 'Data',
-
-        }
-    ]
   return (
     <div className='p-2 h-[40vh]'>
       <div className={`h-full border ${background} shadow-lg p-2 rounded-md`}>

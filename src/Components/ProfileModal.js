@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 function ProfileModal({closeModal}) {
@@ -28,7 +29,7 @@ function ProfileModal({closeModal}) {
             </div>
             
             <div className='text-center'>
-                <img src='background.jpeg' className='m-auto rounded-lg w-[300px] h-[180px] shadow-lg' alt='user'/> 
+                <Image src='background.jpeg' className='m-auto rounded-lg w-[300px] h-[180px] shadow-lg' alt='user'/> 
                 <h3 className=' text-[30px] mx-7'>{sessionStorage.getItem('username')} </h3>
                 <p className='font-100 text-sm mx-7'>Pharmacy Attendant</p>           
             </div>

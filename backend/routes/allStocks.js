@@ -13,7 +13,7 @@ const allStock = async (req, res) => {
             res.status(404).json({ message: 'No stocks found' });
         }
     } catch (error) {
-        console.error('Error fetching stock data:', error);
+        console.error('Error fetching stock data:', error); 
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };

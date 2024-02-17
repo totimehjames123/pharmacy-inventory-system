@@ -1,7 +1,7 @@
 const config = require('./../../../config')
 const userSchema = require('./../../../models/users')
 
-export default async (req, res) => {
+export default function handler(req, res) {
     if (req.method === 'POST'){
         const { username, password } = req.body
         

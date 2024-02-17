@@ -48,7 +48,7 @@ function Login() {
       // Perform login API call using Axios
       const response = await axios.post('http://localhost:5000/login', {
         username,
-        password,
+        password, 
       });
 
       if (response.data.status === 200){

@@ -76,7 +76,7 @@ function MakeSalesModal({ closeModal }) {
               Are you sure you want to delete all?
             </div>
             <div className='mb-4'>
-              This action will delete all sales records you have. You won't be able to recover these records after they're deleted.
+              This action will delete all sales records you have. You won&apos;t be able to recover these records after they&apos;re deleted.
             </div>
             <div className='flex justify-between'>
               <button className='bg-red-500 text-white p-2 rounded-lg mt-1' onClick={handleSubmit}>Delete All</button>
