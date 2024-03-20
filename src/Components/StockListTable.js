@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {FaTrash, FaPenToSquare, FaMagnifyingGlass} from 'react-icons/fa6'
 import Modal from './AddMedicineModal';
-import Link from 'next/link';
 import { FaShoppingCart } from 'react-icons/fa';
 import axios from 'axios';
 
