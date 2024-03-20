@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { FaMoneyBill, FaSortNumericDown, FaUser } from 'react-icons/fa'
 import { FaKitMedical, FaMoneyBillTransfer, FaUserCheck, FaUserDoctor, FaUserGroup } from 'react-icons/fa6'
 
-function dashboard() {
+function Dashboard() {
 
   const [isLightMode, setIsLightMode] = useState(true);
 
@@ -35,4 +35,4 @@ function dashboard() {
   )
 }
 
-export default dashboard
+export default Dashboard
