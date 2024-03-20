@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 
 function UpdateStock() {
   const router = useRouter();
@@ -56,7 +57,7 @@ function UpdateStock() {
         <p className='text-red-400 pt-1 text-sm'>Kindly Cancel you have not entered any data!</p>
         <div className='mt-4 flex justify-between w-full'>
           <button onClick={handleUpdate} className='bg-black rounded-lg text-white p-3'>Update</button>
-          <a href='/stocks' className='bg-gray-600 rounded-lg text-white p-3'>Cancel</a>
+          <Link href='/stocks' className='bg-gray-600 rounded-lg text-white p-3'>Cancel</Link>
         </div>
       </div>
     </div>
