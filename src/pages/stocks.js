@@ -16,7 +16,7 @@ function Stocks() {
     <div className='flex max-w-full overflow-hidden max-h-screen'>
         <SideBar />
         <div className='w-full overflow-auto'>
-          <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicines Stock'} profilePicture={'background.jpeg'} alt='background-image' username={'John Buamah'}/>
+          <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicines Stock'} profilePicture={'/background.jpeg'} alt='background-image' username={'John Buamah'}/>
           <StockListTable />
         </div>
     </div>

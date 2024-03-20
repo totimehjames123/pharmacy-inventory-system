@@ -53,7 +53,7 @@ function UpdateStock() {
           <label className='font-bold flex justify-between'>Current Quantity 👉 <p className='text-sm font-200 text-orange-300'>{quantity}</p></label>
           <input type='number' value={updatedQuantity} defaultValue={updatedQuantity} placeholder='New quantity' onChange={(e) => setUpdatedQuantity(e.target.value)} className='p-5 border w-auto rounded-lg w-full'/>
         </div>
-        <p className='text-red-400 pt-1 text-sm'>Kindly Cancel you've not entered any data!</p>
+        <p className='text-red-400 pt-1 text-sm'>Kindly Cancel you have not entered any data!</p>
         <div className='mt-4 flex justify-between w-full'>
           <button onClick={handleUpdate} className='bg-black rounded-lg text-white p-3'>Update</button>
           <a href='/stocks' className='bg-gray-600 rounded-lg text-white p-3'>Cancel</a>

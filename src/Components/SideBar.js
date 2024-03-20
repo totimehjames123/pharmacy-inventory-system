@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import React, {useState} from 'react'
 import { useRouter } from 'next/router'
-// import {FaGauge} from 'react-icons/md'
 import {FaGauge, FaTablets, FaTableList, FaRightFromBracket} from 'react-icons/fa6'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';

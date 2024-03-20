@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -130,10 +131,12 @@ function Login() {
         </div>
       </div>
       <div className='hidden lg:block h-screen p-2 sm:hidden'>
-        <img
-          src='background.avif'
+        <Image
+          src='/background.avif'
           alt='background-picture'
           className='w-full h-[100%] rounded-lg bg-cover bg-no-repeat'
+          width={300}
+          height={300}
         />
       </div>
     </div>

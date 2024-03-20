@@ -16,7 +16,7 @@ function Sales() {
         <SideBar />
         <div className='w-full overflow-x-hidden overflow-auto max-h-screen'>
           
-          <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicine Sales'} profilePicture={'background.jpeg'} alt='imagess' username={'John Buamah'} />
+          <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicine Sales'} profilePicture={'/background.jpeg'} alt='imagess' username={'John Buamah'} />
           <SalesListTable isLightMode={isLightMode}/>
         </div>
     </div>
