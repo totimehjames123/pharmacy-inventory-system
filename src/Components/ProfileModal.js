@@ -31,7 +31,7 @@ function ProfileModal({closeModal}) {
             <div className='text-center'>
                 <Image src='/background.jpeg' className='m-auto rounded-lg w-[300px] h-[180px] shadow-lg' alt='user' width={50} height={50}/> 
                 <h3 className=' text-[30px] mx-7'>{sessionStorage.getItem('username')} </h3>
-                <p className='font-100 text-sm mx-7'>Pharmacy Attendant</p>           
+                <p className='font-100 text-sm mx-7'>{sessionStorage.getItem('username') === "admin123" && "Pharmacy Attendant"}</p>           
             </div>
           </div>
         </div>
