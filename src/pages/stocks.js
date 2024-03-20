@@ -1,6 +1,6 @@
-import NavBar from '@/Components/NavBar'
-import SideBar from '@/Components/SideBar'
-import StockListTable from '@/Components/StockListTable'
+import NavBar from '@/components/NavBar'
+import SideBar from '@/components/SideBar'
+import StockListTable from '@/components/StockListTable'
 import React, { useState } from 'react'
 
 function Stocks() {

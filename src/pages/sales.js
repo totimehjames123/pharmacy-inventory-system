@@ -1,6 +1,6 @@
-import NavBar from '@/Components/NavBar'
-import SalesListTable from '@/Components/SalesListTable'
-import SideBar from '@/Components/SideBar'
+import NavBar from '@/components/NavBar'
+import SalesListTable from '@/components/SalesListTable'
+import SideBar from '@/components/SideBar'
 import React, { useState } from 'react'
 
 function Sales() {
