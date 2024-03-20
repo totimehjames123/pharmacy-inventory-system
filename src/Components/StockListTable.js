@@ -15,7 +15,7 @@ function StockListTable({}) {
       setModalOpen(true);
     }
     else {
-      alert("Only admins can add stocks.")
+      alert("Only admins can add stocks!")
     }
   };
 
