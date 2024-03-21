@@ -47,7 +47,7 @@ function Login() {
 
     try {
       // Perform login API call using Axios
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post('https://pharmacy-inventory-system-backend.onrender.com/login', {
         username,
         password, 
       });

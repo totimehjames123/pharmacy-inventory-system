@@ -22,7 +22,7 @@ function AddMedicineModal({closeModal}) {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/addToStock', formData); 
+      const response = await axios.post('https://pharmacy-inventory-system-backend.onrender.com/addToStock', formData); 
       console.log(response.data);
       closeModal();
     } catch (error) {

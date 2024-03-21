@@ -9,7 +9,7 @@ function MakeSalesModal({ closeModal }) {
   useEffect(() => {
     const fetchMedicineSales = async () => {
       try {
-        const response = await fetch('http://localhost:5000/allStocks');
+        const response = await fetch('https://pharmacy-inventory-system-backend.onrender.com/allStocks');
         if (!response.ok) {
           throw new Error('Failed to fetch medicine sales');
         }
@@ -29,7 +29,7 @@ function MakeSalesModal({ closeModal }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/deleteSales');
+      const response = await axios.post('https://pharmacy-inventory-system-backend.onrender.com/deleteSales');
 
       if (response.status === 200){
         console.log(response.data);

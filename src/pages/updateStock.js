@@ -25,7 +25,7 @@ function UpdateStock() {
 
 
 
-      const response = await axios.post(`http://localhost:5000/updateStock/`, updatedData);
+      const response = await axios.post(`https://pharmacy-inventory-system-backend.onrender.com/updateStock/`, updatedData);
 
       console.log('Update successful', response.data);
 

@@ -7,7 +7,7 @@ const SignUpPage = () => {
 
   useEffect(() => {
     // Fetch options from your API
-    fetch('http://localhost:5000/allStocks')
+    fetch('https://pharmacy-inventory-system-backend.onrender.com/allStocks')
       .then(response => response.json())
       .then(data => setOptions(data.stocks))
       .catch(error => console.error('Error fetching options:', error));

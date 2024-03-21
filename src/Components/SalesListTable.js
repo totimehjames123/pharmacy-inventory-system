@@ -24,7 +24,7 @@ function SalesListTable({isLightMode}) {
   };
 
   const deleteSaleRecord = async (id) => {
-    const response = await axios.post("http://localhost:5000/deleteSaleRecord", {id: id})
+    const response = await axios.post("https://pharmacy-inventory-system-backend.onrender.com/deleteSaleRecord", {id: id})
     if (response.status === 200) {
       window.location.reload();    }
     else {
@@ -34,7 +34,7 @@ function SalesListTable({isLightMode}) {
   
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/allSales');
+      const response = await fetch('https://pharmacy-inventory-system-backend.onrender.com/allSales');
       
       if (response.status === 200){ 
         const data = await response.json();

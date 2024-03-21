@@ -27,7 +27,7 @@ function StockListTable({}) {
     const confirmDelete = confirm(`Are you sure you want to delete ${name}`)
 
     if (confirmDelete){
-      const response = await axios.post("http://localhost:5000/deleteStock", {id: id})
+      const response = await axios.post("https://pharmacy-inventory-system-backend.onrender.com/deleteStock", {id: id})
 
       if (response.status === 200){
         // alert(`${name} deleted successfully`)
@@ -39,10 +39,10 @@ function StockListTable({}) {
     const quantity = prompt(`How many ${medicineName} do you want to sell?`)
     
     if (quantity !== ""){
-      const response = await axios.post("http://localhost:5000/makeSales", {name: medicineName, unitPrice: unitPrice, quantity: quantity})
+      const response = await axios.post("https://pharmacy-inventory-system-backend.onrender.com/makeSales", {name: medicineName, unitPrice: unitPrice, quantity: quantity})
       
       if (response.status == 200){
-        const res = await axios.post("http://localhost:5000/updateStockQuantityAtSales", {name: medicineName, quantity: quantity})
+        const res = await axios.post("https://pharmacy-inventory-system-backend.onrender.com/updateStockQuantityAtSales", {name: medicineName, quantity: quantity})
         if (res.status == 200){
           alert (res.data.message)
         }
@@ -58,7 +58,7 @@ function StockListTable({}) {
   
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/allStocks');
+      const response = await fetch('https://pharmacy-inventory-system-backend.onrender.com/allStocks');
       
       if (response.status === 200){ 
         const data = await response.json();
