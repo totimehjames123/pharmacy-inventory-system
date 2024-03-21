@@ -1,4 +1,4 @@
 node_modules
 .env
 .next
-# /backend/
+/pharmacy-inventory-system-backend/
