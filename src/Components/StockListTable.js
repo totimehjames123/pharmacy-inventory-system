@@ -133,7 +133,7 @@ function StockListTable({}) {
               <td className='whitespace-nowrap'>{item.quantity}</td>
               <td className='whitespace-nowrap'>GH&cent;{(item.unitPrice * item.quantity).toFixed(2)}</td>
               <td>
-                <div className='flex justify-around'>
+                <div className='flex justify-around gap-3'>
                   <FaShoppingCart className='text-green-600' onClick={() => makeSales(item._id, item.name, item.unitPrice)}/>
                   {window.sessionStorage.getItem("username") === "admin123" &&
                     <>

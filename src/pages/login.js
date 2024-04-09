@@ -93,7 +93,7 @@ function Login() {
             draggable
             pauseOnHover
             theme="colored"
-            />
+          />
             <h3 className='text-5xl font-bold'>Welcome back!</h3>
             <p>Kindly provide your login information to proceed</p>
             <div className='my-5'>
