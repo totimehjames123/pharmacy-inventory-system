@@ -46,7 +46,7 @@ function MakeSalesModal({ closeModal }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+    <div className="fixed inset-0 bg-black opacity-100 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
       <div className="relative w-auto max-w-md p-4 mx-auto my-6 transition-all transform bg-white rounded-md shadow-lg">
       <div className="flex items-start justify-between mb-4 ">
               <h1 className="text-2xl font-bold">Delete all records</h1>

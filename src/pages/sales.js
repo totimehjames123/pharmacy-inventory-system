@@ -14,7 +14,7 @@ function Sales() {
   return (
     <div className={`flex max-w-full overflow-hidden max-h-screen`}>
           <SideBar />
-        <div className='max-w-full overflow-x-hidden overflow-auto max-h-screen'>
+        <div className='w-full overflow-x-hidden overflow-auto max-h-screen'>
           <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicine Sales'} profilePicture={'/background.jpeg'} alt='imagess' username={'John Buamah'} />
           <SalesListTable isLightMode={isLightMode} />
         </div>

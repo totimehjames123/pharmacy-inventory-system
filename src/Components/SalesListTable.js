@@ -10,6 +10,8 @@ function SalesListTable({isLightMode}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
 
+  console.log(stockData)
+
   const openModal = () => {
     if (window.sessionStorage.getItem("username") == "admin123"){
       setModalOpen(true);
@@ -67,7 +69,7 @@ function SalesListTable({isLightMode}) {
         <Modal closeModal={closeModal}/>
       )}
     </div>
-      <div className={`flex justify-between items-center p-2 mb-1 ${!isLightMode && 'bg-gray-900'}`}>
+      <div className={`lg:flex md:flex  justify-between max-w-full items-center p-2 mb-1 ${!isLightMode && 'bg-gray-900'}`}>
         <div className='bg-gray-50 rounded-lg outline-blue-500 border flex items-center'>
           <button className='rounded-tl-lg rounded-bl-lg p-3 text-center bg-blue-500'>
             <FaMagnifyingGlass className='text-white mr-1'/>
@@ -76,8 +78,8 @@ function SalesListTable({isLightMode}) {
         </div>
         <div>
 
-          <button onClick={openModal} className='bg-red-500 hover:bg-red-400 transition-all duration-300 rounded-lg p-2 text-white'>
-            Clear
+          <button onClick={openModal} disabled={filteredStockData.length === 0 && true} className={`bg-red-500 ${filteredStockData.length === 0 ? 'pointer-events-none bg-red-200': 'bg-red-500'} hover:bg-red-400 transition-all duration-300 rounded-lg lg:mt-auto md:mt-auto mt-2 lg:w-auto md:w-auto w-full p-2 text-white`}>
+            Clear All Records
           </button>
         </div>
       </div>

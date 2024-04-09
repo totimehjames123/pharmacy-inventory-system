@@ -92,19 +92,19 @@ function StockListTable({}) {
       )}
       
     </div>
-      <div className='flex justify-between items-center p-2 mb-1'>
+      <div className='lg:flex md:flex  justify-between max-w-full items-center p-2 mb-1'>
         <div className='bg-gray-50 rounded-lg outline-blue-500 border flex items-center'>
           <button className='rounded-tl-lg rounded-bl-lg p-3 text-center bg-blue-500'>
             <FaMagnifyingGlass className='text-white mr-1'/>
           </button>
-          <input placeholder='Search drugs ...' onChange={(e) => setSearchTerm(e.target.value)} className='bg-gray-50 px-2 focus:outline-none'/>
+          <input placeholder='Search drugs ...' onChange={(e) => setSearchTerm(e.target.value)} className='bg-gray-50 px-2 w-auto overflow-hidden bg-none focus:outline-none'/>
         </div>
         <div>
         {
           
           <>
-            <button onClick={openModal} className='bg-green-500 hover:bg-green-400 transition-all duration-300 rounded-lg p-2 text-white'>
-              Add 
+            <button onClick={openModal} className='bg-green-500 hover:bg-green-400 transition-all duration-300 rounded-lg lg:mt-auto md:mt-auto mt-2 lg:w-auto md:w-auto w-full p-2 text-white'>
+              Add to drugs
             </button>
           </>
         }
@@ -124,6 +124,7 @@ function StockListTable({}) {
               <th className='whitespace-nowrap'>Action</th>
             </tr>
           </thead>
+          
           <tbody className='text-center'>
           { filteredStockData.map((item, index) => (
             <tr key={item._id} className='border h-12 hover:bg-gray-50'>

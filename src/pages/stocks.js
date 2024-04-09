@@ -15,7 +15,7 @@ function Stocks() {
   return (
     <div className='flex max-w-full overflow-hidden max-h-screen'>
         <SideBar />
-        <div className='max-w-full overflow-x-hidden overflow-auto max-h-screen'>
+        <div className='w-full overflow-auto overflow-x-hidden max-h-screen'>
           <NavBar isLightMode={isLightMode} toggleThemeMode={toggleThemeMode} title={'Medicines Stock'} profilePicture={'/background.jpeg'} alt='background-image' username={'John Buamah'}/>
           <StockListTable />
         </div>
