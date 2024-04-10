@@ -10,7 +10,7 @@ function NavBar({title, profilePicture, toggleThemeMode, isLightMode}) {
 
 
   return (
-    <nav className={`flex justify-between p-3  bg-black opacity-90 h-15 items-center ${ !isLightMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+    <nav className={`flex justify-between p-3 h-15 items-center ${ !isLightMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       {isModalOpen && <ProfileModal closeModal={() => setModalOpen(false)}/>}
         <div className={"text-lg font-bold lg:font-thin lg:text-4xl"}>
           {title}
@@ -20,9 +20,7 @@ function NavBar({title, profilePicture, toggleThemeMode, isLightMode}) {
               {isLightMode ? <FaMoon size={15} /> : <FaSun size={15}/>}
             </button> 
             
-          <Image onClick={() => setModalOpen(true)} alt='profilepicture' className='rounded-full w-10 h-10 lg:mr-5' src={profilePicture} width={200} height={200}/>
-          
-            
+          <Image onClick={() => setModalOpen(true)} alt='profilepicture' className='rounded-full w-10 h-10 lg:mr-5' src={profilePicture} width={200} height={200}/>   
         </div>
     </nav>
   )

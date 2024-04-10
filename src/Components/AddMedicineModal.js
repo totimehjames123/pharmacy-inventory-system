@@ -28,7 +28,7 @@ function AddMedicineModal({ closeModal }) {
       setIsEmpty(true);
       return; // Exit the function early
     }
-
+    
     // All fields are filled, proceed with form submission
     setIsEmpty(false);
 
