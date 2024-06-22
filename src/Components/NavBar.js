@@ -16,9 +16,9 @@ function NavBar({title, profilePicture, toggleThemeMode, isLightMode}) {
           {title}
         </div>
         <div className='flex items-center'>
-            <button className={`p-2 rounded-full m-5 text-white ${isLightMode ? ' bg-black  hover:bg-blue-500' : 'bg-blue-500  hover:bg-black'} transition-all duration-500`} onClick={() => toggleThemeMode()}>
+            {/* <button className={`p-2 rounded-full m-5 text-white ${isLightMode ? ' bg-black  hover:bg-blue-500' : 'bg-blue-500  hover:bg-black'} transition-all duration-500`} onClick={() => toggleThemeMode()}>
               {isLightMode ? <FaMoon size={15} /> : <FaSun size={15}/>}
-            </button> 
+            </button>  */}
             
             <Image onClick={() => setModalOpen(true)} alt='profilepicture' className='rounded-full w-10 h-10 lg:mr-5' src={profilePicture} width={200} height={200}/>   
         </div>
