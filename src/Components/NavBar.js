@@ -20,7 +20,7 @@ function NavBar({title, profilePicture, toggleThemeMode, isLightMode}) {
               {isLightMode ? <FaMoon size={15} /> : <FaSun size={15}/>}
             </button> 
             
-          <Image onClick={() => setModalOpen(true)} alt='profilepicture' className='rounded-full w-10 h-10 lg:mr-5' src={profilePicture} width={200} height={200}/>   
+            <Image onClick={() => setModalOpen(true)} alt='profilepicture' className='rounded-full w-10 h-10 lg:mr-5' src={profilePicture} width={200} height={200}/>   
         </div>
     </nav>
   )
