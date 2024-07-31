@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useRouter } from 'next/router'
-import {FaGauge, FaTablets, FaTableList, FaRightFromBracket} from 'react-icons/fa6'
+import {FaGauge, FaTablets, FaTableList, FaRightFromBracket, FaUserPlus} from 'react-icons/fa6'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -15,16 +15,17 @@ function SideBar() {
     }   
 
     const notifyLogout = () => {
+        sessionStorage.clear()
 
         toast.success("You've logged out successfully!", {
-        position: "top-left",
-        autoClose: 50000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
+            position: "top-left",
+            autoClose: 50000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
         })
 
         router.push('/login')
@@ -35,16 +36,21 @@ function SideBar() {
             title: "Dashboard",
             path: "/dashboard",
             icon: <FaGauge size={20}/>
+        },{
+            title: "Stock",
+            path: "/stocks",
+            icon: <FaTablets size={20} />
         },
         {
             title: "Sales",
             path: "/sales",
             icon: <FaTableList size={20} />
         },
+        
         {
-            title: "Stock",
-            path: "/stocks",
-            icon: <FaTablets size={20} />
+            title: "New Attendant",
+            path: "/signup",
+            icon: <FaUserPlus size={20} />
         },
     
     ]

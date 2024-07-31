@@ -3,15 +3,15 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
-import { configDotenv } from 'dotenv';
+import Image from 'next/image';
+import Link from 'next/link';
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+function ForgotPassword() {
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isSentMessage, setIsSentMessage] = useState(false)
 
   const router = useRouter();
 
@@ -41,30 +41,22 @@ function Login() {
     });
   };
 
-  const handleLogin = async () => {
-    if (!username || username.trim().length < 1 || !password) {
-      notifyError('All fields are required');
+  const handleForgotPassword = async () => {
+    if (!email || email.trim().length < 1) {
+      notifyError('Email is required');
       return;
     }
 
     setLoading(true);
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`, {
-        username,
-        password,
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/forgot-password`, {
+        email,
       });
 
       if (response.data.status === 200) {
         notifySuccess(response.data.message);
-
-        sessionStorage.setItem('id', response.data.data._id);
-        sessionStorage.setItem('name', response.data.data.name);
-        sessionStorage.setItem('email', response.data.data.email);
-        sessionStorage.setItem('username', response.data.data.username);
-        sessionStorage.setItem('role', response.data.data.role);
-        
-        router.push('/dashboard');
+        setIsSentMessage(true)
       } else {
         notifyError(response.data.message);
       }
@@ -95,39 +87,31 @@ function Login() {
               pauseOnHover
               theme='colored'
             />
-            <h3 className='text-5xl font-bold'>Welcome back!</h3>
-            <p className='text-gray-500'>Kindly provide your login information to proceed</p>
+            <h3 className='text-3xl font-bold'>Forgot Password</h3>
+            <p className='text-gray-500'>{!isSentMessage ? "Enter your email to reset your password" : <p>A 6 digit verification code has been sent to your email,<br /> if you've not recieved it, kindly re-submit your email <br /> otherwise  click the link below to proceed."</p>}</p>
             <div className='my-5'>
-              <label htmlFor='username'>Username</label>
+              <label htmlFor='email'>Email</label>
               <br />
               <DynamicInput
-                type='text'
-                id='username'
-                placeholder='Enter your username'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type='email'
+                id='email'
+                placeholder='Enter your email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor='password'>Password</label>
-              <br />
-              <DynamicInput
-                type='password'
-                id='password'
-                placeholder='Enter your password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <p>Already recieved code ? &nbsp; {<Link href={'/reset-password'} className='text-blue-500'>Continue to reset password</Link>}</p>
             <button
               className='my-5 p-4 flex justify-center items-center bg-black transition-all duration-300 hover:bg-gray-900 text-white rounded-lg w-full'
-              onClick={handleLogin}
+              onClick={handleForgotPassword}
               disabled={loading}
             >
               {loading ? (
-                <div className='flex justify-center items-center'><FaSpinner className='animate-spin mr-3'/>Please wait ...</div>
+                <div className='flex justify-center items-center'>
+                  <FaSpinner className='animate-spin mr-3' /> Please wait ...
+                </div>
               ) : (
-                'Login'
+                'Submit'
               )}
             </button>
           </div>
@@ -146,4 +130,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;
