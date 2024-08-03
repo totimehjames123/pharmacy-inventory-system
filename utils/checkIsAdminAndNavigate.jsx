@@ -1,11 +1,17 @@
-import checkIsAdmin from "./checkIsAdmin"
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import checkIsAdmin from "./checkIsAdmin";
 
-function checkIsAdminAndNavigate() {
-    const navigate = useNavigate()
-    if (checkIsAdmin() !== true){
-        navigate('/login')
-    }
+function CheckIsAdminAndNavigate() {
+    const router = useRouter();
+
+    useEffect(() => {
+        if (checkIsAdmin() !== true){
+            router.push('/login');
+        }
+    }, [router]);
+
+    return null;
 }
 
-export default checkIsAdminAndNavigate
+export default CheckIsAdminAndNavigate;

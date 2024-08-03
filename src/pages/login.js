@@ -7,8 +7,11 @@ import Image from 'next/image';
 import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import { configDotenv } from 'dotenv';
+import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate'
 
 function Login() {
+  checkIsLoggedInAndNavigate("/dashboard", "/login")
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

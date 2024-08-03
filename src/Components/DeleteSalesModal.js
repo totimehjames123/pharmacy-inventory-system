@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
-function MakeSalesModal({ closeModal }) {
+function DeleteSalesModal({ closeModal }) {
   const [medicineSales, setMedicineSales] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState('');
   const [quantity, setQuantity] = useState(null);
@@ -9,7 +10,7 @@ function MakeSalesModal({ closeModal }) {
   useEffect(() => {
     const fetchMedicineSales = async () => {
       try {
-        const response = await fetch('https://pharmacy-inventory-system-backend.onrender.com/allStocks');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allStocks`);
         if (!response.ok) {
           throw new Error('Failed to fetch medicine sales');
         }
@@ -29,10 +30,10 @@ function MakeSalesModal({ closeModal }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://pharmacy-inventory-system-backend.onrender.com/deleteSales');
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/deleteSales`);
 
       if (response.status === 200){
-        console.log(response.data);
+        toast.success(response.data);
         closeModal();
         window.location.reload()
       }
@@ -46,7 +47,7 @@ function MakeSalesModal({ closeModal }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black opacity-100 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
       <div className="relative w-auto max-w-md p-4 mx-auto my-6 transition-all transform bg-white rounded-md shadow-lg">
       <div className="flex items-start justify-between mb-4 ">
               <h1 className="text-2xl font-bold">Delete all records</h1>
@@ -72,15 +73,15 @@ function MakeSalesModal({ closeModal }) {
             </div>
         <div>
           <form>
-            <div className='mb-4 font-bold'>
+            <div className='mb-2 font-bold text-md text-gray-700'>
               Are you sure you want to delete all?
             </div>
-            <div className='mb-4'>
-              This action will delete all sales records you have. You won&apos;t be able to recover these records after they&apos;re deleted.
+            <div className='mb-4 text-sm'>
+              This action will delete all sales records you have. You won&apos;t be able to recover these records after they&apos;re deleted. Click the 'Delete all button to proceed.'
             </div>
-            <div className='flex justify-between'>
-              <button className='bg-red-500 text-white p-2 rounded-lg mt-1' onClick={handleSubmit}>Delete All</button>
-              <button className='bg-gray-500 text-white p-2 rounded-lg mt-1' onClick={() => closeModal()}>Quit Operation</button>
+            <div className='flex justify-end gap-2 mt-2'>
+              <button className='bg-red-500 text-white text-sm p-2 rounded-lg' onClick={handleSubmit}>Delete All</button>
+              <button className='bg-gray-500 text-white text-sm  p-2 rounded-lg' onClick={() => closeModal()}>Quit Operation</button>
             </div>
           </form>
         </div>
@@ -89,4 +90,4 @@ function MakeSalesModal({ closeModal }) {
   );
 }
 
-export default MakeSalesModal;
+export default DeleteSalesModal;

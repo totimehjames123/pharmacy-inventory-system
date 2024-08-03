@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import axios from 'axios'; // Make sure to install axios
 
 function SalesModal({ closeModal, handleSales, currentMedicine }) {
   const [customerName, setCustomerName] = useState('');
@@ -8,6 +9,8 @@ function SalesModal({ closeModal, handleSales, currentMedicine }) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [quantity, setQuantity] = useState('');
   const [loading, setLoading] = useState(false);
+  const [customerHints, setCustomerHints] = useState([]);
+  const [hintLoading, setHintLoading] = useState(false);
 
   const handleSubmit = () => {
     if (!customerName || !email || !phoneNumber || !quantity) {
@@ -20,8 +23,8 @@ function SalesModal({ closeModal, handleSales, currentMedicine }) {
       return;
     }
 
-    if (currentMedicine.quantity < quantity){
-      toast.error("The quantity your entered is more than the quantity available!")
+    if (currentMedicine.quantity < quantity) {
+      toast.error("The quantity entered is more than the quantity available!");
       return;
     }
 
@@ -30,17 +33,40 @@ function SalesModal({ closeModal, handleSales, currentMedicine }) {
       .finally(() => {
         setLoading(false);
         if (!loading) {
-            closeModal();
+          closeModal();
         }
       });
   };
 
+  const fetchCustomerHints = async (query) => {
+    if (query.length === 0) {
+      setCustomerHints([]);
+      return;
+    }
+
+    setHintLoading(true);
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-customers`, {
+        params: { query },
+      });
+      setCustomerHints(response.data);
+    } catch (error) {
+      toast.error("Failed to fetch customer names");
+    } finally {
+      setHintLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomerHints(customerName);
+  }, [customerName]);
+
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
-      <div className='bg-white p-6 rounded-lg shadow-lg max-w-md w-full'>
+      <div className='bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative'>
         <h2 className='text-2xl mb-4'>Make a Sale</h2>
         {currentMedicine && <h3 className='text-xl mb-4'>Medicine: {currentMedicine.name}</h3>}
-        <div className='mb-4'>
+        <div className='mb-4 relative'>
           <label htmlFor='customerName' className='block text-gray-700'>Customer Name</label>
           <input
             type='text'
@@ -49,6 +75,20 @@ function SalesModal({ closeModal, handleSales, currentMedicine }) {
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
           />
+          {hintLoading && <div className='mt-2'>Loading...</div>}
+          {customerHints.length > 0 && (
+            <ul className='absolute top-full left-0 w-full mt-1 border border-gray-300 bg-white rounded shadow-lg z-10'>
+              {customerHints.map((name, index) => (
+                <li
+                  key={index}
+                  className='p-2 hover:bg-gray-100 cursor-pointer'
+                  onClick={() => setCustomerName(name)}
+                >
+                  {name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className='mb-4'>
           <label htmlFor='email' className='block text-gray-700'>Email</label>
@@ -84,18 +124,19 @@ function SalesModal({ closeModal, handleSales, currentMedicine }) {
         </div>
         <div className='flex justify-end'>
           <button
-            className='bg-red-500 text-white p-2 rounded mr-2'
-            onClick={closeModal}
-          >
-            Cancel
-          </button>
-          <button
-            className='bg-green-500 text-white p-2 rounded'
+            className='bg-black text-white p-2 rounded  mr-2'
             onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? <FaSpinner className='animate-spin' /> : 'Submit'}
           </button>
+          <button
+            className='bg-gray-500 text-white p-2 rounded'
+            onClick={closeModal}
+          >
+            Cancel
+          </button>
+          
         </div>
       </div>
     </div>

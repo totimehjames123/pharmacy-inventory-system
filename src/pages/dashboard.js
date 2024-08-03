@@ -4,10 +4,14 @@ import NavBar from '@/Components/NavBar'
 import SideBar from '@/Components/SideBar'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { FaFilter, FaMoneyBill, FaSortNumericDown, FaUser } from 'react-icons/fa'
+import { FaExclamationCircle, FaFilter, FaMoneyBill, FaSortNumericDown, FaSpinner, FaUser } from 'react-icons/fa'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
+import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate'
+
 
 function Dashboard() {
+  checkIsLoggedInAndNavigate ("/dashboard", "/login")
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('All Customers');
   const [isLightMode, setIsLightMode] = useState(true);
@@ -29,8 +33,8 @@ function Dashboard() {
     totalAmountInStock: 0,
     sumOfAllTransactions: 0,
   });
-
-  // console.log(data)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const toggleThemeMode = () => {
     setIsLightMode(!isLightMode);
@@ -40,17 +44,15 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/fetch-transaction-info`);
-        // console.log("Fetched Data:", response.data);  // Check data structure
         setData(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError("Error fetching data");
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
-
-  // Filtering and search logic
-  
 
   const filteredStockData = data.lastSalesData.filter(item => {
     const matchesSearch = item.customerName?.toLowerCase().includes(searchTerm?.toLowerCase());
@@ -69,10 +71,6 @@ function Dashboard() {
     }
     return matchesSearch;
   });
-  
-
-
-
 
   const calculatePercentage = (part, total) => total === 0 ? 0 : (part / total) * 100;
 
@@ -90,6 +88,28 @@ function Dashboard() {
     return diffInDays < 30 ? 'Active' : 'Inactive';
   };
 
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <div className='flex flex-col items-center'>
+          <FaSpinner className='animate-spin text-blue-500 text-4xl' />
+          <p className='text-blue-500 text-xl mt-2'>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <div className='flex flex-col items-center'>
+          <FaExclamationCircle className='text-red-500 text-4xl' />
+          <p className='text-red-500 text-xl mt-2'>{error}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='flex max-w-full bg-gray-50 overflow-hidden max-h-screen'>
       <SideBar />
@@ -97,7 +117,7 @@ function Dashboard() {
         <NavBar
           toggleThemeMode={toggleThemeMode}
           isLightMode={isLightMode}
-          title={'DashBoard'}
+          title={'Dashboard'}
           profilePicture={'/background.jpeg'}
           username={'John Buamah'}
         />
@@ -107,15 +127,15 @@ function Dashboard() {
               <FaMagnifyingGlass className='text-white mr-1' />
             </button>
             <input 
-              placeholder='Search here...' 
+              placeholder='Search customers ...' 
               onChange={(e) => setSearchTerm(e.target.value)} 
               className='bg-white px-2 py-1 focus:outline-none'
             />
           </div>          
-          <div className='flex items-center gap-2 mt-3 overflow-hidden '>
-            <div className='flex gap-1 items-center'>
+          <div className='flex items-center  mt-3 overflow-hidden '>
+            <div className='flex items-center'>
               <p className='flex items-center whitespace-nowrap overflow-scroll bg-black border-none rounded-lg text-xs p-2 mr-2 text-white'>
-                <FaFilter size={8} />
+                <FaFilter size={11} />
                 <span className=''> &nbsp; Filter by</span>&nbsp;
               </p>
             </div>
@@ -123,11 +143,11 @@ function Dashboard() {
               filterType={'Customers'}
               options={['All Customers', 'Active Customers', 'Inactive Customers']}
               onChange={setFilterStatus}
+              value={filterStatus}
             />
-
           </div>
         </div>
-                
+
         <div className='grid lg:grid-cols-4 grid-cols-1 gap-2 p-2 md:grid-cols-2'>
           <DashboardCard
             title={`Active Customers`}
@@ -175,56 +195,62 @@ function Dashboard() {
             backgroundColor="#f8f8f8"
             percentage={calculatePercentage(data.medicinesSold, data.totalAmountInStock)}
           />
-          
-          
         </div>
-        
-        <div className={`w-full overflow-scroll`}>
-          <h5 className='font-bold text-gray-500 m-2 text-sm'>All Customers</h5>
-          <table className={`w-full ${!isLightMode && 'bg-gray-900'}`}>
-            <thead className={`${!isLightMode ? 'bg-gray-900 text-white' : 'bg-slate-200'}`}>
-              <tr className='h-16'>
-                <th className='whitespace-nowrap px-4 py-2'>Customer Name</th>
-                <th className='whitespace-nowrap px-4 py-2'>Phone Number</th>
-                <th className='whitespace-nowrap px-4 py-2'>Email</th>
-                <th className='whitespace-nowrap px-4 py-2'>Status</th>
-                <th className='whitespace-nowrap px-4 py-2'>Last Medicine Bought</th>
-                <th className='whitespace-nowrap px-4 py-2'>Price</th>
-                <th className='whitespace-nowrap px-4 py-2'>Quantity</th>
-                <th className='whitespace-nowrap px-4 py-2'>Total Amount</th>
-                <th className='whitespace-nowrap px-4 py-2'>Overall Purchase</th>
-                <th className='whitespace-nowrap px-4 py-2'>Last Seen</th>
-              </tr>
-            </thead>
-            <tbody className={`text-center ${!isLightMode && 'bg-gray-900 text-white'}`}>
-              {filteredStockData?.map((item) => (
-                <tr key={item._id} className={`border h-16 `} title={item.date}>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>{item.customerName}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>{item.phoneNumber}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>{item.email}</td>
-                  <td className={`whitespace-nowrap text-sm px-4 py-2 ${getStatusColor(item)}`}>
-                    {getStatus(item)}
-                  </td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>{item.name}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{item.unitPrice.toFixed(2)}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>{item.quantity}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{(item.unitPrice * item.quantity).toFixed(2)}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{item.sumOfAllTransactions.toFixed(2)}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>
-                    {new Intl.DateTimeFormat('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      second: '2-digit',
-                      timeZone: 'UTC'
-                    }).format(new Date(item.date))}
-                  </td>
+
+        <div className={`w-full overflow-scroll text-gray-500`}>
+          {filteredStockData.length === 0 ? (
+            <div className='flex items-center justify-center py-6'>
+              <div className='flex flex-col items-center'>
+                <FaExclamationCircle className='text-gray-500 text-4xl' />
+                <p className='text-gray-500 text-xl mt-2'>No results found</p>
+              </div>
+            </div>
+          ) : (
+            <table className='w-full'>
+              <thead className='bg-slate-200'>
+                <tr className='h-12 break'>
+                  <th className='whitespace-nowrap px-4 py-2'>Customer Name</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Phone Number</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Email</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Status</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Last Medicine Bought</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Unit Price</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Quantity</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Amount Sold</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Total Amount</th>
+                  <th className='whitespace-nowrap px-4 py-2'>Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredStockData.map(item => (
+                  <tr key={item._id} className={`border h-16`} title={item.date}>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>{item.customerName}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>{item.phoneNumber}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>{item.email}</td>
+                    <td className={`whitespace-nowrap text-sm px-4 py-2 ${getStatusColor(item)}`}>
+                      {getStatus(item)}
+                    </td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>{item.name}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{item.unitPrice.toFixed(2)}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>{item.quantity}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{(item.unitPrice * item.quantity).toFixed(2)}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{item.sumOfAllTransactions.toFixed(2)}</td>
+                    <td className='whitespace-nowrap text-sm px-4 py-2'>
+                      {new Intl.DateTimeFormat('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        timeZone: 'UTC'
+                      }).format(new Date(item.date))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

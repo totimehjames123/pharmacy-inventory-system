@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function AddMedicineModal({ closeModal }) {
+function AddMedicineModal({ closeModal, fetchData }) {
   const [formData, setFormData] = useState({
     name: '',
     unitPrice: '',
@@ -43,6 +43,7 @@ function AddMedicineModal({ closeModal }) {
       if (response.status === 200) {
         toast.success('Medicine added successfully');
         closeModal();
+        fetchData()
       }
       
     } catch (error) {
@@ -122,17 +123,18 @@ function AddMedicineModal({ closeModal }) {
             />
           </div>
           <div className="flex justify-end">
+            
             <button
-              className="bg-red-500 text-white p-2 rounded mr-2"
-              onClick={() => closeModal()}
-            >
-              Cancel
-            </button>
-            <button
-              className="bg-green-500 text-white p-2 rounded"
+              className="bg-black text-white p-2 rounded-lg mr-2"
               onClick={handleSubmit}
             >
               Submit
+            </button>
+            <button
+              className="bg-gray-500 text-white p-2 rounded-lg "
+              onClick={() => closeModal()}
+            >
+              Cancel
             </button>
           </div>
         </form>
