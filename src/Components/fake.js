@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-import { FaDownload, FaSpinner, FaTimes, FaTrash } from 'react-icons/fa';
+import { FaSpinner, FaTimes } from 'react-icons/fa';
 import { MdErrorOutline } from 'react-icons/md';
 import { RiFileSearchLine } from 'react-icons/ri';
 import DeleteSalesModal from './DeleteSalesModal';
+import Receipt from './Receipt';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import checkIsAdmin from './../../utils/checkIsAdmin'
-import Receipt from './Receipt';
-
+import checkIsAdmin from './../../utils/checkIsAdmin';
 
 function SalesListTable({ isLightMode }) {
-
   const [isModalOpen, setModalOpen] = useState(false);
   const [stockData, setStockData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -70,8 +68,6 @@ function SalesListTable({ isLightMode }) {
 
   useEffect(() => {
     fetchData();
-    // const intervalId = setInterval(fetchData, 3000);
-    // return () => clearInterval(intervalId);
   }, []);
 
   const filteredStockData = stockData.filter((item) =>
@@ -136,43 +132,26 @@ function SalesListTable({ isLightMode }) {
                 <th className='whitespace-nowrap px-4 py-2'>Quantity</th>
                 <th className='whitespace-nowrap px-4 py-2'>Total Price</th>
                 <th className='whitespace-nowrap px-4 py-2'>Purchase Date</th>
-                <th className='whitespace-nowrap px-4 py-2'>Action</th>
+                <th className='whitespace-nowrap px-4 py-2'>Actions</th>
               </tr>
             </thead>
-            <tbody className={`text-center ${!isLightMode && 'bg-gray-900 text-white'}`}>
+            <tbody className='divide-y'>
               {filteredStockData.map((item) => (
-                <tr key={item._id} className={`border h-16 ${!isLightMode ? 'bg-gray-900 hover:bg-gray-700' : 'hover:bg-gray-100'}`} title={item.date}>
+                <tr key={item._id} className='even:bg-slate-100 odd:bg-slate-50'>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item._id}</td>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item.customerName}</td>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item.phoneNumber}</td>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item.email}</td>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item.name}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{item.unitPrice.toFixed(2)}</td>
+                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH¢{item.unitPrice.toFixed(2)}</td>
                   <td className='whitespace-nowrap text-sm px-4 py-2'>{item.quantity}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH&cent;{(item.unitPrice * item.quantity).toFixed(2)}</td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2'>
-                    {new Intl.DateTimeFormat('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      second: '2-digit',
-                      timeZone: 'UTC'
-                    }).format(new Date(item.date))}
-                  </td>
-                  <td className='whitespace-nowrap text-sm px-4 py-2 text-center'>
-                    {checkIsAdmin() ? (
-                      <button 
-                        className='hover:bg-red-200 hover:text-white p-3 rounded-full' 
-                        onClick={() => deleteSaleRecord(item._id)}
-                      >
-                        <FaTimes className='text-red-500 hover:text-red-300 cursor-pointer' />
-                      </button>
-                    ) : (
-                      
-                        <Receipt sale={item} />
-                    )}
+                  <td className='whitespace-nowrap text-sm px-4 py-2'>GH¢{(item.unitPrice * item.quantity).toFixed(2)}</td>
+                  <td className='whitespace-nowrap text-sm px-4 py-2'>{new Date(item.date).toLocaleString()}</td>
+                  <td className='whitespace-nowrap text-sm px-4 py-2 flex justify-center gap-2'>
+                    <Receipt sale={item} />
+                    <button onClick={() => deleteSaleRecord(item._id)} title='Delete sale'>
+                      <FaTimes className='text-red-500 hover:text-red-300 cursor-pointer' />
+                    </button>
                   </td>
                 </tr>
               ))}
