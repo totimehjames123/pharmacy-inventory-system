@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { FaGauge, FaTablets, FaTableList, FaRightFromBracket, FaUserPlus } from 'react-icons/fa6';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function SideBar() {
     const router = useRouter();
@@ -73,10 +74,10 @@ function SideBar() {
                 draggable
                 pauseOnHover
                 theme="colored"
-            />
+            /> 
             <div className={`flex justify-between m-2 mb-9`}>
                 {!isCloseSideBar && <h4 className='text-blue-300 text-lg'>Epha<span className='text-white'>Medicals</span></h4>}
-                <button onClick={toggleSideBar} className='border-2 rounded-full transition-all duration-500 w-8 h-8 hover:bg-slate-600 font-thin text-lg'>{isCloseSideBar ? '>' : '<'}</button>
+                <button onClick={toggleSideBar} className='flex items-center justify-center border-2 rounded-full transition-all duration-500 w-8 h-8 hover:bg-slate-600 font-thin text-lg'>{isCloseSideBar ? <FaChevronRight /> : <FaChevronLeft />}</button>
             </div>
             <div className='h-[80%]'>
                 {navLinks.map((navLink, index) =>
