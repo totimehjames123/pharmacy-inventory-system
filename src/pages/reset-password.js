@@ -5,8 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 function ResetPassword() {
+  const router = useRouter()
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
@@ -63,6 +66,7 @@ function ResetPassword() {
 
       if (response.data.status === 200) {
         notifySuccess(response.data.message);
+        router.push("/login")
       } else {
         notifyError(response.data.message);
       }
