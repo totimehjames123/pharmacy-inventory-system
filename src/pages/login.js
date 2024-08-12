@@ -133,6 +133,7 @@ function Login() {
                 'Login'
               )}
             </button>
+            <p className='text-center'>{<Link href={'/forgot-password'} className='text-blue-500'>Forgot your password</Link>}</p>
           </div>
         </div>
       </div>
