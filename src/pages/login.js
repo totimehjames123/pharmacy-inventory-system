@@ -8,6 +8,7 @@ import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import { configDotenv } from 'dotenv';
 import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate'
+import Link from 'next/link';
 
 function Login() {
   checkIsLoggedInAndNavigate("/dashboard", "/login")
