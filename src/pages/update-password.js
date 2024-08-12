@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
-import Image from 'next/image';
 import checkIsLoggedInAndNavigate from '../../utils/checkIsLoggedInAndNavigate';
 
 function ChangePassword() {
@@ -83,9 +82,7 @@ function ChangePassword() {
       } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
           notifyError(error.response.data.message);
-        } else {
-          notifyError('An unexpected error occurred. Please try again later.');
-        }
+        } 
       } finally {
         setLoading(false);
       }
@@ -169,6 +166,7 @@ function ChangePassword() {
               'Change Password'
             )}
           </button>
+          <p className='text-center'>{<Link href={'/login'} className='text-blue-500'>Go back</Link>}</p>
         </div>
       </div>
     </div>
