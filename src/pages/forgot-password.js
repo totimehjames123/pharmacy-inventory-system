@@ -7,6 +7,7 @@ import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import Image from 'next/image';
 import Link from 'next/link';
+import Logo from '@/Components/Logo';
 
 function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -70,9 +71,7 @@ function ForgotPassword() {
   return (
     <div className='grid lg:grid-cols-2 h-screen'>
       <div className='h-screen'>
-        <h4 className='text-blue-500 text-2xl p-5 font-bold'>
-          Epha<span className='text-black'>Medicals</span>
-        </h4>
+        <Logo />
         <div className='h-[85%] flex items-center justify-center p-4'>
           <div>
             <ToastContainer

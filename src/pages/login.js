@@ -9,6 +9,7 @@ import DynamicInput from '../Components/DynamicInput'; // Adjust the path as nee
 import { configDotenv } from 'dotenv';
 import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate'
 import Link from 'next/link';
+import Logo from '@/Components/Logo';
 
 function Login() {
   checkIsLoggedInAndNavigate("/dashboard", "/login")
@@ -82,9 +83,7 @@ function Login() {
   return (
     <div className='grid lg:grid-cols-2 h-screen'>
       <div className='h-screen'>
-        <h4 className='text-blue-500 text-2xl p-5 font-bold'>
-          Epha<span className='text-black'>Medicals</span>
-        </h4>
+        <Logo />
         <div className='h-[85%] flex items-center justify-center p-4'>
           <div>
             <ToastContainer

@@ -6,6 +6,8 @@ import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Logo from '@/Components/Logo';
 
 function ResetPassword() {
   const router = useRouter()
@@ -79,12 +81,10 @@ function ResetPassword() {
 
   return (
     <div className='relative min-h-screen   bg-gray-100'>
-    <div className='p-5 text-center'>
-        <h4 className='text-blue-500 text-2xl font-bold'>
-          Epha<span className='text-black'>Medicals</span>
-        </h4>
-      </div>
+    <Logo align={'text-center lg:block md:block hidden'}/>
+
     <div className='flex items-center justify-center'>
+
       <div className='w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8'>
         <ToastContainer
           position='top-left'
@@ -98,6 +98,8 @@ function ResetPassword() {
           pauseOnHover
           theme='colored'
         />
+        <Logo align={'text-center lg:hidden md:hidden block'}/>
+
         <h3 className='text-3xl font-bold text-center mb-4'>Reset Password</h3>
         <p className='text-gray-500 text-center mb-4'>Enter the verification code sent to your email</p>
         <div className=''>
@@ -152,6 +154,8 @@ function ResetPassword() {
             />
           </div>
         </div>
+        <p >Not recieved code?&nbsp;{<Link href={'/forgot-password'} className='text-blue-500'>Back to resend</Link>}</p>
+
         <button
           className='my-5 p-4 flex justify-center items-center bg-black transition-all duration-300 hover:bg-gray-900 text-white rounded-lg w-full'
           onClick={handleResetPassword}

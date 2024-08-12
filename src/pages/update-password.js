@@ -7,6 +7,7 @@ import DynamicInput from '../Components/DynamicInput'; // Adjust the path as nee
 import checkIsLoggedInAndNavigate from '../../utils/checkIsLoggedInAndNavigate';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Logo from '@/Components/Logo';
 
 function ChangePassword() {
   checkIsLoggedInAndNavigate("/update-password", "/login")
@@ -94,11 +95,8 @@ function ChangePassword() {
 
   return (
     <div className='relative min-h-screen bg-gray-100'>
-      <div className='p-5 text-center'>
-        <h4 className='text-blue-500 text-2xl font-bold'>
-          Epha<span className='text-black'>Medicals</span>
-        </h4>
-      </div>
+      <Logo align={'text-center lg:block md:block hidden'}/>
+
       <div className='flex items-center justify-center'>
         <div className='w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8'>
           <ToastContainer
@@ -113,6 +111,9 @@ function ChangePassword() {
             pauseOnHover
             theme='colored'
           />
+
+          <Logo align={'text-center lg:hidden md:hidden block'}/>
+
           <h3 className='text-3xl font-bold text-center mb-4'>Change Password</h3>
           <p className='text-gray-500 text-center mb-4'>Please provide your details to change your password</p>
           <div className=''>
