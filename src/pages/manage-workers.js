@@ -12,8 +12,8 @@ import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate
 
 
 function ManageWorkers() {
-  checkIsLoggedInAndNavigate ("/manage-workers", "/login")
-  checkIsAdminAndNavigate()
+  // checkIsLoggedInAndNavigate ("/manage-workers", "/login")
+  // checkIsAdminAndNavigate()
 
   const [workers, setWorkers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
