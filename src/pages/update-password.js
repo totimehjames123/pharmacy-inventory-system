@@ -6,10 +6,13 @@ import { FaSpinner } from 'react-icons/fa';
 import DynamicInput from '../Components/DynamicInput'; // Adjust the path as needed
 import checkIsLoggedInAndNavigate from '../../utils/checkIsLoggedInAndNavigate';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function ChangePassword() {
   checkIsLoggedInAndNavigate("/update-password", "/login")
 
+  const router = useRouter();
+  
   const [username, setUsername] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
