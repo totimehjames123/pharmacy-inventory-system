@@ -170,7 +170,7 @@ function ChangePassword() {
               'Change Password'
             )}
           </button>
-          <p className='text-center'>{<Link href={'/login'} className='text-blue-500'>Go back</Link>}</p>
+          <p className='text-center'>{<Link href={'/dashboard'} className='text-blue-500'>Go back</Link>}</p>
         </div>
       </div>
     </div>

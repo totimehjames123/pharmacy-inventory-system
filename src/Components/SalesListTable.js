@@ -13,7 +13,7 @@ import Receipt from './Receipt';
 function SalesListTable({ isLightMode }) {
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [stockData, setStockData] = useState([]);
+  const [salesData, setSalesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -55,7 +55,7 @@ function SalesListTable({ isLightMode }) {
         if (data.sales.length === 0) {
           setErrorMessage('No data found.');
         }
-        setStockData(data.sales);
+        setSalesData(data.sales);
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Failed to fetch data');
@@ -74,7 +74,7 @@ function SalesListTable({ isLightMode }) {
     // return () => clearInterval(intervalId);
   }, []);
 
-  const filteredStockData = stockData.filter((item) =>
+  const filteredStockData = salesData.filter((item) =>
     item.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -105,7 +105,7 @@ function SalesListTable({ isLightMode }) {
           />
         </div>
         <div>
-          { stockData.length > 0 && checkIsAdmin() === "admin" &&
+          { salesData.length > 0 && checkIsAdmin() === "admin" &&
           <button 
             onClick={openModal} 
             disabled={filteredStockData.length === 0} 
