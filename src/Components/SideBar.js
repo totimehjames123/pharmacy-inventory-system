@@ -22,7 +22,7 @@ function SideBar() {
 
     const notifyLogout = () => {
         sessionStorage.clear();
-        toast.success("You've logged out successfully!", {
+        toast.success("You have logged out successfully!", {
             position: "top-left",
             autoClose: 5000,
             hideProgressBar: false,

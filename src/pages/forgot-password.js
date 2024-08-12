@@ -88,7 +88,7 @@ function ForgotPassword() {
               theme='colored'
             />
             <h3 className='text-3xl font-bold'>Forgot Password</h3>
-            <p className='text-gray-500'>{!isSentMessage ? "Enter your email to reset your password" : <p>A 6 digit verification code has been sent to your email,<br /> if you've not recieved it, kindly re-submit your email <br /> otherwise  click the link below to proceed."</p>}</p>
+            <p className='text-gray-500'>{!isSentMessage ? "Enter your email to reset your password" : <p>A 6 digit verification code has been sent to your email,<br /> if you&apos;ve not recieved it, kindly re-submit your email <br /> otherwise  click the link below to proceed.</p>}</p>
             <div className='my-5'>
               <label htmlFor='email'>Email</label>
               <br />
