@@ -40,8 +40,8 @@ function ProfileModal({ closeModal }) {
         <div className="text-center">
           <div className="relative w-24 h-24 mx-auto mb-4">
             <Image
-              src='/background.jpeg'
-              className='rounded-full shadow-lg'
+              src='/logo.jpg'
+              className='rounded-full shadow-sm border'
               alt='user'
               layout='fill'
               objectFit='cover'

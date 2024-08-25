@@ -10,7 +10,7 @@ import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate
 
 
 function Dashboard() {
-  checkIsLoggedInAndNavigate ("/dashboard", "/login")
+  // checkIsLoggedInAndNavigate ("/dashboard", "/login")
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('All Customers');
@@ -118,7 +118,7 @@ function Dashboard() {
           toggleThemeMode={toggleThemeMode}
           isLightMode={isLightMode}
           title={'Dashboard'}
-          profilePicture={'/background.jpeg'}
+          profilePicture={'/logo.jpg'}
           username={'John Buamah'}
         />
         <div className='px-4 lg:flex md:flex lg:justify-between md:justify-between items-center'>

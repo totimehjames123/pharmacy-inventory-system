@@ -83,7 +83,7 @@ function Login() {
   return (
     <div className='grid lg:grid-cols-2 h-screen'>
       <div className='h-screen'>
-        <Logo />
+        
         <div className='h-[85%] flex items-center justify-center p-4'>
           <div>
             <ToastContainer
@@ -98,6 +98,9 @@ function Login() {
               pauseOnHover
               theme='colored'
             />
+            <div className='flex justify-center'>
+              <Logo />
+            </div>
             <h3 className='text-5xl font-bold'>Welcome back!</h3>
             <p className='text-gray-500'>Kindly provide your login information to proceed</p>
             <div className='my-5'>
@@ -137,14 +140,16 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className='hidden lg:block h-screen p-2 sm:hidden'>
-        <Image
-          src='/background.avif'
-          alt='background-picture'
-          className='w-full h-[100%] rounded-lg bg-cover bg-no-repeat'
-          width={300}
-          height={300}
-        />
+      <div className='hidden lg:block relative'>
+        <div className='absolute inset-0 rounded-lg'>
+          <Image
+            src='/background.jpg'
+            alt='background-picture'
+            layout='fill'
+            className='object-cover bg-contain p-5'
+            style={{borderRadius: 30}}
+          />
+        </div>
       </div>
     </div>
   );

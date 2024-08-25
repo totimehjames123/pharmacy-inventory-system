@@ -4,6 +4,7 @@ import { FaGauge, FaTablets, FaTableList, FaRightFromBracket, FaUserPlus } from 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import Image from 'next/image';
 
 function SideBar() {
     const router = useRouter();
@@ -76,7 +77,7 @@ function SideBar() {
                 theme="colored"
             /> 
             <div className={`flex justify-between m-2 mb-9`}>
-                {!isCloseSideBar && <h4 className='text-blue-300 text-lg'>Epha<span className='text-white'>Medicals</span></h4>}
+                {!isCloseSideBar && <Image src={'/logo-black.png'} className='w-[60px] h-[40px] lg:w-[150px] lg:h-[50px]' alt='logo-black' width={150} height={70} style={{borderRadius: 10}}/>}
                 <button onClick={toggleSideBar} className='flex items-center justify-center border-2 rounded-full transition-all duration-500 w-8 h-8 hover:bg-slate-600 font-thin text-lg'>{isCloseSideBar ? <FaChevronRight /> : <FaChevronLeft />}</button>
             </div>
             <div className='h-[80%]'>

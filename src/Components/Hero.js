@@ -1,93 +1,35 @@
 import Link from 'next/link';
-import { useState } from 'react';
-import Logo from './Logo';
-
+import Image from 'next/image';
+import Logo from './Logo'; // Make sure the path to the Logo component is correct
 
 export default function Hero() {
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleCreateAccountClick = () => {
-    setShowAlert(true);
-  };
-
   return (
-    <div className="relative bg-white overflow-hidden">
-      <header className="absolute inset-x-0 top-0 z-50">
-        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <div className="flex lg:flex-1">
-            <Logo />
-          </div> 
-        </nav>
-      </header>
-
-      <div
-        className="relative isolate px-6 pt-14 lg:px-8 bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: 'url(./background.avif)' }}
-      >
-        <div
-          className="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-xs"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-          aria-hidden="true"
-        >
-          <div
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-          />
+    <div className="relative h-screen">
+      <Image
+        src="/background.jpg"
+        alt="Background"
+        className="absolute inset-0 w-full h-full  object-cover"
+        width={1920} // Adjust width and height as needed
+        height={1080}
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+        <div className="absolute -top-7 left-2">
+          <Logo /> {/* Ensure that Logo component is styled appropriately */}
         </div>
-        <div className="relative max-w-2xl py-32 sm:py-48 lg:py-56 text-center text-white">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Make Sales and Record Keeping Easy
-          </h1>
-          <p className="mt-6 text-lg leading-8">
-            Make sales and record keeping easy and convenient with Epha Medical Pharmacy Inventory System. Say goodbye to stress & paperwork.
+        <div className="text-center text-white ">
+          <h1 className="text-5xl mb-4" style={{fontFamily: 'cursive'}}>Welcome  <br /> <span className='text-lg' style={{fontFamily: 'cursive'}}> to</span></h1>
+          <h1 className="text-5xl font-bold mb-4">EPC Information System</h1>
+          <p className="text-xl mb-8 leading-relaxed px-4 md:px-8  max-w-[70%] mx-auto">
+            Make sales and record keeping easy and convenient with EPC's Information System. Say goodbye to stress & lots of paperwork.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="flex justify-center items-center flex-nowrap gap-x-4">
             <Link
-              href="/login" 
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              href="/login"
+              className="bg-violet-700 hover:bg-violet-500 text-white py-4 px-8 rounded"
             >
-              Sign in
+              Get Started
             </Link>
-            <button
-              onClick={handleCreateAccountClick}
-              className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-            >
-              Create Account
-            </button>
           </div>
-          {showAlert && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="bg-white p-6 rounded shadow-lg">
-                <p className="text-black">
-                  You have no rights to signup yourself on this system as a worker. Please contact the pharmacy administrator.
-                </p>
-                <button
-                  onClick={() => setShowAlert(false)}
-                  className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-        <div
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-          aria-hidden="true"
-        >
-          <div
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-          />
         </div>
       </div>
     </div>

@@ -1,10 +1,14 @@
+import Image from 'next/image'
 import React from 'react'
 
 function Logo({align}) {
   return (
-    <div className={`text-blue-500 text-2xl p-5 ${align} font-bold`}>
-          Epha<span className='text-black'>Medicals</span>
-    </div>
+    <Image
+        src="/logo.png"
+        alt="Logo"
+        width={200} // Adjust width and height as needed
+        height={200}
+      />
  )
 }
 

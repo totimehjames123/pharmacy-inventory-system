@@ -81,11 +81,10 @@ function ResetPassword() {
 
   return (
     <div className='relative min-h-screen   bg-gray-100'>
-    <Logo align={'text-center lg:block md:block hidden'}/>
 
     <div className='flex items-center justify-center'>
 
-      <div className='w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8'>
+      <div className='w-full max-w-lg bg-white shadow-md rounded px-8  pb-8'>
         <ToastContainer
           position='top-left'
           autoClose={5000}
@@ -98,8 +97,9 @@ function ResetPassword() {
           pauseOnHover
           theme='colored'
         />
-        <Logo align={'text-center lg:hidden md:hidden block'}/>
-
+            <div className='flex justify-center'>
+              <Logo />
+            </div>
         <h3 className='text-3xl font-bold text-center mb-4'>Reset Password</h3>
         <p className='text-gray-500 text-center mb-4'>Enter the verification code sent to your email</p>
         <div className=''>
