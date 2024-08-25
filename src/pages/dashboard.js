@@ -10,7 +10,7 @@ import checkIsLoggedInAndNavigate from './../../utils/checkIsLoggedInAndNavigate
 
 
 function Dashboard() {
-  // checkIsLoggedInAndNavigate ("/dashboard", "/login")
+  checkIsLoggedInAndNavigate ("/dashboard", "/login")
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('All Customers');

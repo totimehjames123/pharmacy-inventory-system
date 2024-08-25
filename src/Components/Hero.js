@@ -20,7 +20,7 @@ export default function Hero() {
           <h1 className="text-5xl mb-4" style={{fontFamily: 'cursive'}}>Welcome  <br /> <span className='text-lg' style={{fontFamily: 'cursive'}}> to</span></h1>
           <h1 className="text-5xl font-bold mb-4">EPC Information System</h1>
           <p className="text-xl mb-8 leading-relaxed px-4 md:px-8  max-w-[70%] mx-auto">
-            Make sales and record keeping easy and convenient with EPC's Information System. Say goodbye to stress & lots of paperwork.
+            Make sales and record keeping easy and convenient with EPC&apos;s Information System. Say goodbye to stress & lots of paperwork.
           </p>
           <div className="flex justify-center items-center flex-nowrap gap-x-4">
             <Link
