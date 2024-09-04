@@ -4,7 +4,7 @@ function checkIsAdmin() {
 
         if (role === "admin") {
             return true
-        } else if (role === "student") {
+        } else if (role === "worker") {
             return false;
         }
     }

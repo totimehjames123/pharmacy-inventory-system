@@ -159,7 +159,7 @@ function Dashboard() {
             trailColor="#F3F4F6" 
             backgroundColor="#f8f8f8"
             percentage={calculatePercentage(data.activeCustomers, data.totalCustomers)}
-            period='Up from 3 days ago'
+            period='Up from 1 month ago'
           />
           <DashboardCard
             title={`Total Sales`}
